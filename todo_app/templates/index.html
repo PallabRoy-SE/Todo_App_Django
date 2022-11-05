@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}TodoApp{% endblock title %}
+
+{% block body %}
+
+<div class="row mx-0 gx-0">
+    <div class="col mx-0">
+        <ul class="list-group">
+            {% for todo_item in todo_items %}
+                <form class="form-inline" action="/delete_todo/{{todo_item.id}}/" method="POST">
+                {% csrf_token %}
+                    <li class="list-group-item">{{ todo_item.text }}
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-sm btn-danger py-0">Delete</button>
+                        </div>
+                    </li>
+                </form>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock body %}
